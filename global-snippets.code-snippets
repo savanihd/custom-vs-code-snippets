@@ -1,0 +1,224 @@
+{
+    "Tailwind Table with Actions": {
+        "prefix": "twtable",
+        "scope": "javascript,jsx,php,html,blade",
+        "body": [
+            "<div class=\"overflow-x-auto\">",
+            "    <table class=\"w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400\">",
+            "        <thead class=\"text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400\">",
+            "        <tr>",
+            "            <th scope=\"col\" class=\"px-6 py-3\">ID</th>",
+            "            <th scope=\"col\" class=\"px-6 py-3\">Title</th>",
+            "            <th scope=\"col\" class=\"px-6 py-3\">Body</th>",
+            "            <th scope=\"col\" class=\"px-6 py-3\">Actions</th>",
+            "        </tr>",
+            "        </thead>",
+            "        <tbody>",
+            "        <tr class=\"odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200\">",
+            "            <td class=\"px-6 py-2 font-medium text-gray-900 dark:text-white\">${1:ID}</td>",
+            "            <td class=\"px-6 py-2 text-gray-600 dark:text-gray-300\">${2:Title}</td>",
+            "            <td class=\"px-6 py-2 text-gray-600 dark:text-gray-300\">${3:Body}</td>",
+            "            <td class=\"px-6 py-2\">",
+            "                <button class=\"cursor-pointer px-3 py-2 text-xs font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800\">",
+            "                    Edit",
+            "                </button>",
+            "                <button class=\"cursor-pointer px-3 py-2 text-xs font-medium text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 ml-1\">",
+            "                    Delete",
+            "                </button>",
+            "            </td>",
+            "        </tr>",
+            "        </tbody>",
+            "    </table>",
+            "</div>"
+        ],
+        "description": "Tailwind CSS Table with Actions"
+    },
+	"Laravel Function": {
+        "prefix": "twof",
+        "body": [
+            "Set up your two factor authentication by scanning the barcode below. Alternatively, you can use the code <strong></strong>",
+        ],
+        "description": "Laravel Controller Function with Request Parameter"
+    },
+    "Tailwind Dashboard Box": {
+        "prefix": "twbox",
+        "scope": "javascript,jsx,php,html,blade",
+        "body": [
+            "<div class=\"flex justify-between gap-4 p-4\">",
+            "    <div class=\"bg-blue-500 text-white p-6 rounded-lg shadow-lg text-center flex-1 min-w-[200px] max-w-[300px]\">",
+            "        <h2 class=\"text-lg font-bold\">Users</h2>",
+            "        <p class=\"text-2xl font-semibold\">100</p>",
+            "    </div>",
+            "    <div class=\"bg-green-500 text-white p-6 rounded-lg shadow-lg text-center flex-1 min-w-[200px] max-w-[300px]\">",
+            "        <h2 class=\"text-lg font-bold\">Products</h2>",
+            "        <p class=\"text-2xl font-semibold\">102</p>",
+            "    </div>",
+            "    <div class=\"bg-yellow-500 text-white p-6 rounded-lg shadow-lg text-center flex-1 min-w-[200px] max-w-[300px]\">",
+            "        <h2 class=\"text-lg font-bold\">Orders</h2>",
+            "        <p class=\"text-2xl font-semibold\">200</p>",
+            "    </div>",
+            "    <div class=\"bg-red-500 text-white p-6 rounded-lg shadow-lg text-center flex-1 min-w-[200px] max-w-[300px]\">",
+            "        <h2 class=\"text-lg font-bold\">Sales</h2>",
+            "        <p class=\"text-2xl font-semibold\">300</p>",
+            "    </div>",
+            "</div>"
+        ],
+        "description": "Tailwind CSS Dashboard Boxes"
+    },
+    "Tailwind Toast Notification": {
+        "prefix": "twtoastr",
+        "scope": "php,html,blade,javascript,jsx",
+        "body": [
+            "<div id=\"toast\" x-data=\"{ show: true }\" x-show=\"show\" x-init=\"setTimeout(() => show = false, 3000)\" class=\"z-[9999] fixed top-10 right-10 flex items-center bg-white text-black text-sm font-medium px-4 py-3 rounded-lg shadow-lg border border-gray-300\">",
+            "    <!-- Success Icon -->",
+            "    <div class=\"bg-green-100 p-1 rounded-full mr-3\">",
+            "        <svg class=\"w-5 h-5 text-green-600\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">",
+            "            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 13l4 4L19 7\"></path>",
+            "        </svg>",
+            "    </div>",
+            "",
+            "    <!-- Message -->",
+            "    <span>Success!</span>",
+            "",
+            "    <!-- Close Button -->",
+            "    <button onclick=\"document.getElementById('toast').remove()\" class=\"ml-4 text-gray-500 hover:text-black\">",
+            "        ✕",
+            "    </button>",
+            "</div>"
+        ],
+        "description": "Tailwind CSS Toast Notification"
+    },
+    "Tailwind Toast Notification": {
+        "prefix": "success-alert",
+        "scope": "php,html,blade,javascript,jsx",
+        "body": [
+            "@session('success')",
+            "    <div class=\"flex items-center p-2 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-green-900 dark:text-green-300 dark:border-green-800\" role=\"alert\">",
+            "        <svg class=\"flex-shrink-0 w-8 h-8 mr-1 text-green-700 dark:text-green-300\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">",
+            "            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 12l2 2 4-4\"></path>",
+            "        </svg>",
+            "        <span class=\"font-medium\"> ${1:{{ \\$value }}} </span>",
+            "    </div>",
+            "@endsession"
+        ],
+        "description": "Tailwind Success Alert Notification"
+    },
+    "Bootstrap Start": {
+        "prefix": "bhtml",
+        "scope": "php,html,blade,javascript,jsx",
+        "body": [
+            "<!DOCTYPE html>",
+            "<html>",
+            "<head>",
+            "    <title>Example - ItSolutionStuff.com</title>",
+            "    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\" crossorigin=\"anonymous\">",
+            "</head>",
+            "<body>",
+            "    <div class=\"container\">$0</div>",
+            "</body>",
+            "</html>"
+        ],
+        "description": "Bootstrap Start"
+    },
+    "Bootstrap Card": {
+        "prefix": "bcard",
+        "scope": "php,html,blade,javascript,jsx",
+        "body": [
+            "<div class=\"card mt-5\">",
+            "    <h3 class=\"card-header p-3\"> Example - ItSolutionStuff.com</h3>",
+            "    <div class=\"card-body\">",
+            "        $0",
+            "    </div>",
+            "</div>"
+        ],
+        "description": "Bootstrap Card"
+    },
+    "Bootstrap Input": {
+        "prefix": "binput",
+        "scope": "php,html,blade,javascript,jsx",
+        "body": [
+            "<div class=\"mb-3\">",
+            "    <label class=\"form-label\" for=\"inputName\">Name:</label>",
+            "    <input ",
+            "        type=\"text\" ",
+            "        name=\"name\" ",
+            "        id=\"inputName\"",
+            "        class=\"form-control @error('name') is-invalid @enderror\">",
+            "",
+            "    @error('name')",
+            "        <span class=\"text-danger\">{{ \$message }}</span>",
+            "    @enderror",
+            "</div>"
+        ],
+        "description": "Bootstrap Input"
+    },
+    "Ajax Request": {
+		"prefix": "$ajax",
+		"scope": "php,html,blade,javascript,jsx",
+		"body": [
+			"$.ajax({",
+			"\ttype: \"${1:POST}\",",
+			"\turl: \"${2:/your-endpoint}\",",
+			"\tdata: { ${3:key}: ${4:value} },",
+			"\tdataType: 'json',",
+			"\tsuccess: function(response) {",
+			"\t\t${5:// handle success}",
+			"\t},",
+			"\terror: function(error) {",
+			"\t\tconsole.log(error);",
+			"\t}",
+			"});"
+		],
+		"description": "jQuery Ajax POST request"
+	},
+    "Bootstrap Table": {
+        "prefix": "btable",
+        "scope": "php,html,blade,javascript,jsx",
+        "body": [
+            "<table class=\"table table-bordered table-striped\">",
+            "    <thead>",
+            "        <tr>",
+            "            <th>ID</th>",
+            "            <th>Title</th>",
+            "            <th>Body</th>",
+            "            <th width=\"250px\">Action</th>",
+            "        </tr>",
+            "    </thead>",
+            "    <tbody>",
+            "        <tr>",
+            "            <td>1</td>",
+            "            <td>Test</td>",
+            "            <td>Test</td>",
+            "            <td>",
+            "                <button class=\"btn btn-primary btn-sm\">Edit</button>",
+            "                <button class=\"btn btn-danger btn-sm\">Delete</button>",
+            "            </td>",
+            "        </tr>",
+            "    </tbody>",
+            "</table>"
+        ],
+        "description": "Bootstrap-styled HTML table with action buttons"
+    },
+    "Blade Form with CSRF and Error Handling": {
+        "prefix": "bform",
+        "scope": "php,html,blade,javascript,jsx",
+        "body": [
+            "<form>",
+            "    @csrf",
+            "    <div class=\"mt-2\">",
+            "        <label for=\"title\">Title:</label>",
+            "        <input type=\"text\" name=\"title\" id=\"title\" class=\"form-control\">",
+            "        @error(\"title\")",
+            "        <span class=\"text-danger\">{{ \$message }}</span>",
+            "        @enderror",
+            "    </div>",
+            "    <div class=\"mt-2\">",
+            "        <button class=\"btn btn-success\">Submit</button>",
+            "    </div>",
+            "</form>"
+        ],
+        "description": "Blade form with CSRF token and error handling"
+     }
+
+
+}

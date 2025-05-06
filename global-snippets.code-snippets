@@ -218,7 +218,48 @@
             "</form>"
         ],
         "description": "Blade form with CSRF token and error handling"
-     }
-
+     },
+     "Welcome Text": {
+        "prefix": "welcome_text",
+        "scope": "php,html,blade,javascript,jsx",
+        "body": [
+            "We're excited to have you with us and look forward to helping you get the most out of our services. If you have any questions or need assistance, feel free to reach out anytime.",
+        ],
+        "description": "Blade form with CSRF token and error handling"
+     },
+     "Product Grid Card": {
+        "prefix": "product-card",
+        "body": [
+                "<div class=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6\">",
+                "    <div class=\"bg-white rounded-2xl shadow p-4 flex flex-col items-center\">",
+                "        <img ",
+                "            src=\"https://dummyimage.com/600x600/000/fff&text=Product\" ", 
+                "            alt=\"Product Image\" ", 
+                "            class=\"w-full h-60 object-cover rounded-md mb-4\"",
+                "        >",
+                "        <h2 class=\"text-lg font-semibold text-gray-700\">Product</h2>",
+                "        <p class=\"text-blue-600 font-bold text-md mb-2\">100</p>",
+                "        <a ", 
+                "            href=\"\" ", 
+                "            class=\"mt-auto inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition\"",
+                "        >",
+                "            View",
+                "        </a>",
+                "    </div>",
+                "</div>"
+            ],
+        "description": "TailwindCSS product grid card layout"
+    },
+    "Laravel Function Controller": {
+            "prefix": "fun",
+            "scope": "php,blade",
+            "body": [
+                "public function ${1:index}(Request \\$request)",
+                "{",
+                "    ",
+                "}"
+            ],
+            "description": "Laravel Controller Function with Request Parameter"
+        }
 
 }

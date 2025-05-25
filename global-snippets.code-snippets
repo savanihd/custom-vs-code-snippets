@@ -1,7 +1,6 @@
 {
     "Tailwind Table with Actions": {
         "prefix": "twtable",
-        "scope": "javascript,jsx,php,html,blade",
         "body": [
             "<div class=\"overflow-x-auto\">",
             "    <table class=\"w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400\">",
@@ -90,7 +89,6 @@
     },
     "Tailwind Toast Notification": {
         "prefix": "success-alert",
-        "scope": "php,html,blade,javascript,jsx",
         "body": [
             "@session('success')",
             "    <div class=\"flex items-center p-2 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-green-900 dark:text-green-300 dark:border-green-800\" role=\"alert\">",
@@ -329,7 +327,111 @@
             "</div>"
         ],
         "description": "Chat UI layout with TailwindCSS"
-        }
-
-
+        },
+        "Basic THTML Layout": {
+            "prefix": "thtml",
+            "scope": "php,html,blade",
+            "body": [
+            "<!DOCTYPE html>",
+            "<html>",
+            "<head>",
+            "    <title>Youtube Demo - ItSolutionStuff.com</title>",
+            "    @vite(['resources/css/app.css', 'resources/js/app.js'])",
+            "</head>",
+            "<body>",
+            "    <div class=\"container mx-auto px-4 py-8\">",
+            "        <h1 class=\"font-bold text-gray-800 mb-8 text-4xl\">Products</h1>",        
+            "    </div>",
+            "</body>",
+            "</html>"
+            ],
+            "description": "Basic THTML layout with Tailwind and Vite"
+        },
+        "Centered Success Body": {
+            "prefix": "sbody",
+            "scope": "php,html,blade",
+            "body": [
+            "<body class=\"bg-gray-100 flex items-center justify-center h-screen\">",
+            "    <div class=\"text-center\">",
+            "        <svg class=\"w-20 h-20 mx-auto text-green-500\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">",
+            "            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 12l2 2 4-4\"></path>",
+            "        </svg>",
+            "        <h1 class=\"mt-4 text-2xl font-bold text-gray-800\">${1:Payment Success}</h1>",
+            "    </div>",
+            "</body>"
+            ],
+            "description": "Centered success message with SVG icon"
+        },
+        "Tailwind Form Snippet": {
+    "prefix": "tform",
+    "body": [
+      "<form className=\"space-y-6 mt-4 max-w-md mx-auto\">",
+      "",
+      "    <div className=\"grid gap-2\">",
+      "        <label for=\"name\" className=\"text-sm leading-none font-medium select-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50\">",
+      "            Name:",
+      "        </label>",
+      "        <input",
+      "            id=\"name\"",
+      "            name=\"name\"",
+      "            className=\"mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-base shadow-sm transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500\"",
+      "            placeholder=\"Enter your name\"",
+      "        />",
+      "        <p className=\"text-red-500 text-sm mt-1\">Name field is required.</p>",
+      "    </div>",
+      "",
+      "    <button",
+      "        type=\"submit\"",
+      "        className=\"bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition\"",
+      "    >",
+      "        Submit",
+      "    </button>",
+      "",
+      "</form>"
+    ],
+    "description": "Tailwind styled form with a name input and submit button"
+  },
+  "Tailwind Checkbox": {
+    "prefix": "tcheckbox",
+    "body": [
+      "<label key=\"1\" className=\"flex items-center space-x-2\">",
+      "    <input",
+      "        type=\"checkbox\"",
+      "        className=\"form-checkbox h-5 w-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500\"",
+      "    />",
+      "    <span className=\"text-gray-800 capitalize\">Admin</span>",
+      "</label>"
+    ],
+    "description": "Tailwind styled checkbox label with text"
+  },
+  "Tailwind Badge": {
+    "prefix": "tbadge",
+    "body": [
+      "<span",
+      "    key=\"1\"",
+      "    className=\"mr-1 bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300\"",
+      ">",
+      "    1",
+      "</span>"
+    ],
+    "description": "Tailwind styled badge element"
+  },
+  "Simple Pagination": {
+    "prefix": "spagination",
+    "body": [
+      "<div className=\"flex flex-wrap items-center space-x-1 mt-4\">",
+      "    {links.map((link, index) => (",
+      "        <Link",
+      "            key={index}",
+      "            href={link.url ?? '#'}",
+      "            dangerouslySetInnerHTML={{ __html: link.label }}",
+      "            className={`px-3 py-1 text-sm rounded border ",
+      "                ${link.active ? 'bg-blue-600 text-white' : 'bg-white text-gray-700'} ",
+      "                ${!link.url ? 'opacity-50 pointer-events-none' : 'hover:bg-gray-100'}`}",
+      "        />",
+      "    ))}",
+      "</div>"
+    ],
+    "description": "Simple pagination component using Tailwind and dynamic link rendering"
+  }
 }

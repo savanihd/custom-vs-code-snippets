@@ -1,15 +1,57 @@
 {
-    "Tailwind Table with Actions": {
+    "Tailwind Table with Actions Main": {
         "prefix": "twtable",
         "body": [
-            "<div class=\"overflow-x-auto\">",
+            "<div class=\"p-3\">",
+            "    <h1 class=\"text-2xl font-bold mb-4\">CRUD App</h1>",
+            "    <button class=\"mb-4 px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300\">",
+            "        Create",
+            "    </button>",
+            "    <div class=\"overflow-x-auto mt-4\">",
+            "        <table class=\"w-full text-sm text-left text-gray-700\">",
+            "            <thead class=\"text-xs uppercase bg-gray-50 text-gray-700\">",
+            "            <tr>",
+            "                <th scope=\"col\" class=\"px-6 py-3\">ID</th>",
+            "                <th scope=\"col\" class=\"px-6 py-3\">Title</th>",
+            "                <th scope=\"col\" class=\"px-6 py-3\">Body</th>",
+            "                <th scope=\"col\" class=\"px-6 py-3 w-70\">Actions</th>",
+            "            </tr>",
+            "            </thead>",
+            "            <tbody>",
+            "            <tr class=\"odd:bg-white even:bg-gray-50 border-b border-gray-200\">",
+            "                <td class=\"px-6 py-2 font-medium text-gray-900\">${1:ID}</td>",
+            "                <td class=\"px-6 py-2 text-gray-700\">${2:Title}</td>",
+            "                <td class=\"px-6 py-2 text-gray-700\">${3:Body}</td>",
+            "                <td class=\"px-6 py-2 space-x-1\">",
+            "                    <button class=\"cursor-pointer px-3 py-2 text-xs font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300\">",
+            "                        Edit",
+            "                    </button>",
+            "                    <button class=\"cursor-pointer px-3 py-2 text-xs font-medium text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300\">",
+            "                        Show",
+            "                    </button>",
+            "                    <button class=\"cursor-pointer px-3 py-2 text-xs font-medium text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300\">",
+            "                        Delete",
+            "                    </button>",
+            "                </td>",
+            "            </tr>",
+            "            </tbody>",
+            "        </table>",
+            "    </div>",
+            "</div>"
+        ],
+        "description": "Tailwind CSS Table with Actions (No Dark Mode, with CRUD Controls)"
+        },
+    "Tailwind Table with Actions": {
+        "prefix": "twtabled",
+        "body": [
+            "<div class=\"overflow-x-auto p-3 \">",
             "    <table class=\"w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400\">",
             "        <thead class=\"text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400\">",
             "        <tr>",
             "            <th scope=\"col\" class=\"px-6 py-3\">ID</th>",
             "            <th scope=\"col\" class=\"px-6 py-3\">Title</th>",
             "            <th scope=\"col\" class=\"px-6 py-3\">Body</th>",
-            "            <th scope=\"col\" class=\"px-6 py-3\">Actions</th>",
+            "            <th scope=\"col\" class=\"px-6 w-70 py-3\">Actions</th>",
             "        </tr>",
             "        </thead>",
             "        <tbody>",
@@ -365,24 +407,24 @@
         "Tailwind Form Snippet": {
     "prefix": "tform",
     "body": [
-      "<form className=\"space-y-6 mt-4 max-w-md mx-auto\">",
+      "<form class=\"space-y-6 mt-4 max-w-md mx-auto\">",
       "",
-      "    <div className=\"grid gap-2\">",
-      "        <label for=\"name\" className=\"text-sm leading-none font-medium select-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50\">",
+      "    <div class=\"grid gap-2\">",
+      "        <label for=\"name\" class=\"text-sm leading-none font-medium select-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50\">",
       "            Name:",
       "        </label>",
       "        <input",
       "            id=\"name\"",
       "            name=\"name\"",
-      "            className=\"mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-base shadow-sm transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500\"",
+      "            class=\"mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-base shadow-sm transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500\"",
       "            placeholder=\"Enter your name\"",
       "        />",
-      "        <p className=\"text-red-500 text-sm mt-1\">Name field is required.</p>",
+      "        <p class=\"text-red-500 text-sm mt-1\">Name field is required.</p>",
       "    </div>",
       "",
       "    <button",
       "        type=\"submit\"",
-      "        className=\"bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition\"",
+      "        class=\"bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition\"",
       "    >",
       "        Submit",
       "    </button>",
@@ -394,12 +436,12 @@
   "Tailwind Checkbox": {
     "prefix": "tcheckbox",
     "body": [
-      "<label key=\"1\" className=\"flex items-center space-x-2\">",
+      "<label key=\"1\" class=\"flex items-center space-x-2\">",
       "    <input",
       "        type=\"checkbox\"",
-      "        className=\"form-checkbox h-5 w-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500\"",
+      "        class=\"form-checkbox h-5 w-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500\"",
       "    />",
-      "    <span className=\"text-gray-800 capitalize\">Admin</span>",
+      "    <span class=\"text-gray-800 capitalize\">Admin</span>",
       "</label>"
     ],
     "description": "Tailwind styled checkbox label with text"
@@ -409,7 +451,7 @@
     "body": [
       "<span",
       "    key=\"1\"",
-      "    className=\"mr-1 bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300\"",
+      "    class=\"mr-1 bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300\"",
       ">",
       "    1",
       "</span>"
@@ -419,13 +461,13 @@
   "Simple Pagination": {
     "prefix": "spagination",
     "body": [
-      "<div className=\"flex flex-wrap items-center space-x-1 mt-4\">",
+      "<div class=\"flex flex-wrap items-center space-x-1 mt-4\">",
       "    {links.map((link, index) => (",
       "        <Link",
       "            key={index}",
       "            href={link.url ?? '#'}",
       "            dangerouslySetInnerHTML={{ __html: link.label }}",
-      "            className={`px-3 py-1 text-sm rounded border ",
+      "            class={`px-3 py-1 text-sm rounded border ",
       "                ${link.active ? 'bg-blue-600 text-white' : 'bg-white text-gray-700'} ",
       "                ${!link.url ? 'opacity-50 pointer-events-none' : 'hover:bg-gray-100'}`}",
       "        />",
@@ -433,5 +475,101 @@
       "</div>"
     ],
     "description": "Simple pagination component using Tailwind and dynamic link rendering"
+  },
+  "Vue Pagination with Link": {
+    "prefix": "vpagination",
+    "body": [
+      "<div class=\"flex flex-wrap items-center space-x-1 mt-4\">",
+      "    <Link",
+      "        v-for=\"(link, index) in links\"",
+      "        :key=\"index\"",
+      "        :href=\"link.url || '#'\"",
+      "        v-html=\"link.label\"",
+      "        class=\"px-3 py-1 text-sm rounded border\"",
+      "        :class=\"[",
+      "            link.active ? 'bg-blue-600 text-white' : 'bg-white text-gray-700',",
+      "            !link.url ? 'opacity-50 pointer-events-none' : 'hover:bg-gray-100'",
+      "        ]\"",
+      "    />",
+      "</div>"
+    ],
+    "description": "Pagination component using v-for and Link"
+  },
+  "Node.js app.listen snippet": {
+    "prefix": "nodeport",
+    "body": [
+        "app.listen(PORT, () => {",
+        "  console.log(`Server running at http://localhost:${PORT}`);",
+        "});"
+    ],
+    "description": "Start server and log the running URL"
+    },
+    "Node.js MySQL createConnection snippet": {
+        "prefix": "nodemysql",
+        "body": [
+            "const db = mysql.createConnection({",
+            "  host: 'localhost',",
+            "  user: 'root',",
+            "  database: 'database',",
+            "  password: 'password',",
+            "});"
+        ],
+        "description": "Create a MySQL connection"
+    },
+    "Node.js Express error handler snippet": {
+    "prefix": "nodeerror",
+    "body": [
+        "if (err) return res.status(500).json({ error: err.message });"
+    ],
+    "description": "Express error response shorthand"
+    },
+    "Tailwind Dashboard Layout (tdash)": {
+  "prefix": "tdash",
+  "body": [
+    "<div class=\"flex h-screen bg-gray-100\">",
+    "    <aside class=\"w-64 bg-white shadow-md p-5\">",
+    "        <h2 class=\"text-xl font-bold mb-6\">My App</h2>",
+    "        <nav class=\"flex flex-col space-y-3\">",
+    "            <a class=\"text-gray-700 hover:text-blue-600\">Dashboard</a>",
+    "        </nav>",
+    "    </aside>",
+    "",
+    "    <div class=\"flex-1 flex flex-col\">",
+    "        <header class=\"bg-white shadow px-6 py-4\">",
+    "            <h1 class=\"text-2xl font-semibold text-gray-800\">Dashboard</h1>",
+    "        </header>",
+    "",
+    "        <main class=\"flex-1 p-6\">",
+    "            <p class=\"text-gray-700 text-lg\">Hi,  👋</p>",
+    "        </main>",
+    "    </div>",
+    "</div>"
+  ],
+  "description": "Simplified Tailwind dashboard layout with sidebar and topbar"
+},
+"Tailwind Error Alert (terror)": {
+  "prefix": "terrors",
+  "body": [
+    "<div class=\"mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded\">",
+    "    <ul class=\"list-disc pl-5 space-y-1 text-sm\">",
+    "        <li key=\"${1}\">${2:Error message}</li>",
+    "    </ul>",
+    "</div>"
+  ],
+  "description": "Tailwind styled error alert box for React/JSX"
+},
+"React Functional Component": {
+    "prefix": "edf",
+    "body": [
+      "export default function ${1:FunName}() {",
+      "  return (",
+      "    <>",
+      "      <p>Hello</p>",
+      "    </>",
+      "  );",
+      "}"
+    ],
+    "description": "Export default React functional component"
   }
+
 }

@@ -213,7 +213,6 @@
 	},
     "Bootstrap Table": {
         "prefix": "btable",
-        "scope": "php,html,blade,javascript,jsx",
         "body": [
             "<table class=\"table table-bordered table-striped\">",
             "    <thead>",
@@ -570,6 +569,136 @@
       "}"
     ],
     "description": "Export default React functional component"
+  },
+  "React Pagination Component": {
+  "prefix": "reactpagination",
+  "body": [
+    "<div className=\"mt-4 flex flex-wrap gap-2 items-center\">",
+    "  <button",
+    "    onClick={() => onPageChange(currentPage - 1)}",
+    "    disabled={currentPage === 1}",
+    "    className=\"px-3 py-1 bg-gray-300 rounded disabled:opacity-50\"",
+    "  >",
+    "    Prev",
+    "  </button>,",
+    "",
+    "  {pageNumbers.map((num) => (",
+    "    <button",
+    "      key={num}",
+    "      onClick={() => onPageChange(num)}",
+    "      className={`px-3 py-1 rounded ${currentPage === num ? \"bg-blue-600 text-white\" : \"bg-gray-200\"}`}",
+    "    >",
+    "      {num}",
+    "    </button>",
+    "  ))},",
+    "",
+    "  <button",
+    "    onClick={() => onPageChange(currentPage + 1)}",
+    "    disabled={currentPage === totalPages}",
+    "    className=\"px-3 py-1 bg-gray-300 rounded disabled:opacity-50\"",
+    "  >",
+    "    Next",
+    "  </button>",
+    "</div>"
+  ],
+  "description": "React Pagination component using TailwindCSS"
+},
+"React Order Arrow": {
+  "prefix": "reactorder",
+  "body": [
+    "(${1:order} === \"asc\" ? \"↑\" : \"↓\")"
+  ],
+  "description": "Display ascending/descending arrow based on order"
+},
+"React Search Input": {
+  "prefix": "reactsearch",
+  "body": [
+    "<div className=\"mb-4 flex items-center gap-2\">",
+    "  <input",
+    "    type=\"text\"",
+    "    placeholder=\"Search by title or body\"",
+    "    className=\"w-full px-3 py-2 border rounded\"",
+    "  />",
+    "</div>"
+  ],
+  "description": "Simple search input styled with Tailwind CSS"
+},
+"Tailwind File Form": {
+  "prefix": "tfileform",
+  "body": [
+    "<form action=\"\" className=\"bg-white p-4 rounded shadow mb-8 space-y-4\">",
+    "  <h3 className=\"text-lg font-semibold text-gray-700\">Import File</h3>",
+    "  <input ",
+    "    type=\"file\" ",
+    "    className=\"block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-blue-600 file:text-white hover:file:bg-blue-700\"",
+    "  />",
+    "  <button ",
+    "    type=\"submit\" ",
+    "    className=\"px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700\"",
+    "  >",
+    "    Submit",
+    "  </button>",
+    "</form>"
+  ],
+  "description": "A file upload form styled with Tailwind CSS"
+},
+  "react-pdf-table": {
+    "prefix": "react-pdf-table",
+    "body": [
+      "<html>",
+      "  <head>",
+      "    <style>",
+      "      body { font-family: Arial, sans-serif; }",
+      "      table { width: 100%; border-collapse: collapse; margin-top: 20px; }",
+      "      th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }",
+      "      th { background-color: #f4f4f4; }",
+      "    </style>",
+      "  </head>",
+      "  <body>",
+      "    <h1>Users List</h1>",
+      "    <table>",
+      "      <thead>",
+      "        <tr>",
+      "          <th>#</th>",
+      "          <th>Name</th>",
+      "          <th>Email</th>",
+      "        </tr>",
+      "      </thead>",
+      "      <tbody>",
+      "        <% users.forEach((user, index) => { %>",
+      "        <tr>",
+      "          <td><%= index + 1 %></td>",
+      "          <td><%= user.name %></td>",
+      "          <td><%= user.email %></td>",
+      "        </tr>",
+      "        <% }) %>",
+      "      </tbody>",
+      "    </table>",
+      "  </body>",
+      "</html>"
+    ],
+    "description": "HTML Users table for React PDF or server-side rendering"
+  },
+  "Puppeteer Launch & New Page": {
+    "prefix": "node-puppeteer",
+    "body": [
+      "const browser = await puppeteer.launch({",
+      "  headless: 'new',",
+      "  args: ['--no-sandbox', '--disable-setuid-sandbox'],",
+      "});",
+      "",
+      "const page = await browser.newPage();"
+    ],
+    "description": "Launch Puppeteer and open a new page"
+  },
+  "MongoDB Connection": {
+    "prefix": "nodemongodb",
+    "body": [
+      "// MongoDB Database Connection",
+      "mongoose.connect('mongodb://127.0.0.1:27017/${1:dbname}')",
+      "  .then(() => console.log('MongoDB connected'))",
+      "  .catch((err) => console.error('MongoDB error', err));"
+    ],
+    "description": "Connect to MongoDB using Mongoose"
   }
-
 }

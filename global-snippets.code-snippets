@@ -700,5 +700,16 @@
       "  .catch((err) => console.error('MongoDB error', err));"
     ],
     "description": "Connect to MongoDB using Mongoose"
+  },
+  "Node.js Try Catch with Express res": {
+    "prefix": "node-try",
+    "body": [
+      "try {",
+      "  ${1:// your code here}",
+      "} catch (${2:error}) {",
+      "  res.status(400).json({ message: ${2:error}.message });",
+      "}"
+    ],
+    "description": "Node.js try...catch block with Express error response"
   }
 }

@@ -1,0 +1,144 @@
+{
+    "Install PHP Extensions": {
+        "prefix": "doc-1-php",
+        "body": [
+            "RUN apt-get update && apt-get install -y \\",
+            "    libzip-dev \\",
+            "    unzip \\",
+            "    && docker-php-ext-install zip pdo_mysql"
+        ],
+        "description": "Install PHP extensions in Docker"
+    },
+    "Laravel Storage Permissions": {
+        "prefix": "doc-2-permission",
+        "body": [
+            "RUN chown -R www-data:www-data /var/www/html",
+            "RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache",
+            "RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache"
+        ],
+        "description": "Set proper permissions for Laravel storage and cache folders"
+    },
+    "doc-3-apache": {
+        "prefix": "doc-3-apache",
+        "body": [
+            "<VirtualHost *:80>",
+            "    ServerAdmin webmaster@localhost",
+            "    DocumentRoot /var/www/html/public",
+            "",
+            "    <Directory /var/www/html/public>",
+            "        AllowOverride All",
+            "        Require all granted",
+            "    </Directory>",
+            "</VirtualHost>"
+        ],
+        "description": "Apache VirtualHost configuration for port 80"
+    },
+    "doc-db": {
+        "prefix": "doc-db",
+        "body": [
+            "db:",
+            "  image: mysql:8.0",
+            "  environment:",
+            "    MYSQL_ROOT_PASSWORD: root",
+            "    MYSQL_DATABASE: laravel",
+            "    MYSQL_USER: laravel",
+            "    MYSQL_PASSWORD: secret",
+            "  ports:",
+            "    - \"3307:3306\"",
+            "  volumes:",
+            "    - dbdata:/var/lib/mysql"
+        ],
+        "description": "MySQL 8.0 Docker service for Laravel"
+    },
+    "doc-web": {
+  "prefix": "doc-web",
+  "body": [
+    "web:",
+    "  build:",
+    "    context: .",
+    "    dockerfile: Dockerfile",
+    "  image: my-laravel-app",
+    "  ports:",
+    "    - \"8080:80\"",
+    "  volumes:",
+    "    - .:/var/www/html",
+    "    - /var/www/html/storage",
+    "    - /var/www/html/bootstrap/cache",
+    "    - ./.docker/apache/default.conf:/etc/apache2/sites-enabled/000-default.conf",
+    "  working_dir: /var/www/html",
+    "  user: \"www-data\""
+  ],
+  "description": "Laravel web service using Apache in Docker"
+},
+"doc-rewrite": {
+  "prefix": "doc-rewrite",
+  "body": [
+    "RUN a2enmod rewrite"
+  ],
+  "description": "Laravel web service using Apache in Docker"
+},
+"doc-web-2 service snippet": {
+  "prefix": "doc-web-2",
+  "body": [
+    "web:",
+    "  build:",
+    "    context: .",
+    "    dockerfile: Dockerfile",
+    "  image: my-laravel-app",
+    "  volumes:",
+    "    - .:/var/www/html",
+    "    - /var/www/html/storage",
+    "    - /var/www/html/bootstrap/cache",
+    "  working_dir: /var/www/html",
+    "  user: \"www-data\"",
+    "  depends_on:",
+    "    - db"
+  ],
+  "description": "Docker Compose service block for Laravel (doc-web-2)"
+},"doc-nginx service snippet": {
+  "prefix": "doc-nginx",
+  "body": [
+    "nginx:",
+    "  image: nginx:latest",
+    "  ports:",  
+    "    - \"8080:80\"",
+    "  volumes:",
+    "    - .:/var/www/html",
+    "    - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf",
+    "  depends_on:",
+    "    - web"
+  ],
+  "description": "Docker Compose service for Nginx (doc-nginx)"
+},
+"doc-nginx-2 nginx server block": {
+  "prefix": "doc-nginx-2",
+  "body": [
+    "server {",
+    "    listen 80;",
+    "    index index.php index.html;",
+    "    root /var/www/html/public;",
+    "",
+    "    location / {",
+    "        try_files $$uri $$uri/ /index.php?$$query_string;",
+    "    }",
+    "",
+    "    location ~ \\.php$ {",
+    "        include fastcgi_params;",
+    "        fastcgi_pass web:9000;",
+    "        fastcgi_index index.php;",
+    "        fastcgi_param SCRIPT_FILENAME $$realpath_root$$fastcgi_script_name;",
+    "        fastcgi_param PATH_INFO $$fastcgi_path_info;",
+    "        fastcgi_buffers 16 16k;",
+    "        fastcgi_buffer_size 32k;",
+    "    }",
+    "",
+    "    location ~ /\\.ht {",
+    "        deny all;",
+    "    }",
+    "}"
+  ],
+  "description": "Nginx server block for Laravel (doc-nginx-2)"
+}
+
+
+}

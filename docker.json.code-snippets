@@ -138,7 +138,192 @@
     "}"
   ],
   "description": "Nginx server block for Laravel (doc-nginx-2)"
-}
-
+},
+"Docker Cron Service": {
+    "prefix": "doc-cron",
+    "body": [
+      "command: [\"sh\", \"-c\", \"while [ true ]; do php artisan schedule:run --verbose --no-interaction; sleep 60; done\"]",
+    ],
+    "description": "Docker cron job service for Laravel schedule:run"
+  },
+"Docker Mongodb": {
+    "prefix": "doc-mongodb-command",
+    "body": [
+      "command: [\"--auth\", \"--setParameter\", \"authenticationMechanisms=SCRAM-SHA-1\"]",
+    ],
+    "description": "Docker cron job service for Laravel schedule:run"
+  },
+  "Docker Composer 1": {
+    "prefix": "doc-composer-1",
+    "body": [
+      "RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer",
+    ],
+    "description": "Docker cron job service for Laravel schedule:run"
+  },
+  "Docker Composer 2": {
+    "prefix": "doc-composer-2",
+    "body": [
+      "RUN composer install --optimize-autoloader",
+    ],
+    "description": "Docker cron job service for Laravel schedule:run"
+  },
+  "Docker Npm": {
+    "prefix": "doc-npm-install",
+    "body": [
+      "RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \\",
+      "    && apt-get install -y nodejs"
+    ],
+    "description": "Docker cron job service for Laravel schedule:run"
+  },
+  "Doc2 Dockerfile": {
+    "prefix": "doc2-dockerfile",
+    "body": [
+      "FROM php:8.3-fpm",
+      "",
+      "WORKDIR /var/www/html",
+      "",
+      "RUN apt-get update && apt-get install -y \\",
+      "    libzip-dev unzip curl supervisor nginx \\",
+      "    && docker-php-ext-install zip pdo pdo_mysql",
+      "",
+      "RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \\",
+      "    && apt-get install -y nodejs \\",
+      "    && npm install -g npm@latest",
+      "",
+      "# Install Composer",
+      "COPY --from=composer:latest /usr/bin/composer /usr/bin/composer",
+      "",
+      "COPY . /var/www/html",
+      "",
+      "# Remove default nginx configs",
+      "RUN rm -f /etc/nginx/conf.d/default.conf /etc/nginx/sites-enabled/default",
+      "",
+      "# Copy our custom nginx config",
+      "COPY ./.docker/nginx/default.conf /etc/nginx/conf.d/default.conf",
+      "",
+      "RUN sed -i 's|pid /run/nginx.pid;|pid /tmp/nginx.pid;|' /etc/nginx/nginx.conf",
+      "RUN sed -i 's|^user .*;|# user www-data;|' /etc/nginx/nginx.conf",
+      "",
+      "COPY ./.docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf",
+      "",
+      "# Make nginx temp dirs writable for www-data",
+      "RUN mkdir -p /var/lib/nginx /var/lib/nginx/body /var/lib/nginx/fastcgi \\",
+      "    && chown -R www-data:www-data /var/lib/nginx",
+      "",
+      "RUN composer install",
+      "RUN npm install && npm run build",
+      "",
+      "# Force PHP-FPM to listen on TCP so nginx can talk to it",
+      "RUN echo \"listen = 9000\" >> /usr/local/etc/php-fpm.d/zz-docker.conf",
+      "",
+      "RUN chown -R www-data:www-data /var/www/html",
+      "RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache",
+      "RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache",
+      "",
+      "# Nginx listens on port 80",
+      "EXPOSE 80",
+      "",
+      "CMD [\"supervisord\", \"-c\", \"/etc/supervisor/conf.d/supervisord.conf\"]"
+    ],
+    "description": "Dockerfile setup for PHP 8.3 FPM with Nginx, Supervisor, Node.js, and Composer"
+  },
+  "Doc2 Docker Compose": {
+    "prefix": "doc2-compose",
+    "body": [
+      "services:",
+      "  web:",
+      "    build:",
+      "      context: .",
+      "      dockerfile: Dockerfile",
+      "    image: my-laravel-app",
+      "    volumes:",
+      "      - .:/var/www/html",
+      "      - /var/www/html/storage",
+      "      - /var/www/html/bootstrap/cache",
+      "    working_dir: /var/www/html",
+      "    user: \"www-data\"",
+      "    ports:",
+      "      - \"8080:80\"",
+      "    depends_on:",
+      "      - db",
+      "",
+      "  db:",
+      "    image: mysql:8.0",
+      "    environment:",
+      "      MYSQL_ROOT_PASSWORD: root",
+      "      MYSQL_DATABASE: laravel",
+      "      MYSQL_USER: laravel",
+      "      MYSQL_PASSWORD: secret",
+      "    ports:",
+      "      - \"3307:3306\"",
+      "    volumes:",
+      "      - dbdata:/var/lib/mysql",
+      "",
+      "volumes:",
+      "  dbdata:"
+    ],
+    "description": "Docker Compose setup for Laravel with PHP/Nginx (web) and MySQL (db)"
+  },
+  "Doc2 Nginx Config": {
+    "prefix": "doc2-nginx",
+    "body": [
+      "server {",
+      "    listen 80;",
+      "    index index.php index.html;",
+      "    root /var/www/html/public;",
+      "",
+      "    location / {",
+      "        try_files \\$uri \\$uri/ /index.php?\\$query_string;",
+      "    }",
+      "",
+      "    location ~ \\\\.php\\$ {",
+      "        include fastcgi_params;",
+      "        fastcgi_pass 127.0.0.1:9000;",
+      "        fastcgi_index index.php;",
+      "        fastcgi_param SCRIPT_FILENAME \\$document_root\\$fastcgi_script_name;",
+      "    }",
+      "",
+      "    location ~ /\\\\.ht {",
+      "        deny all;",
+      "    }",
+      "}"
+    ],
+    "description": "Nginx config for Laravel with PHP-FPM on port 9000"
+  },
+  "Doc2 Supervisord Config": {
+    "prefix": "doc2-supervisord",
+    "body": [
+      "[supervisord]",
+      "nodaemon=true",
+      "",
+      "[program:php-fpm]",
+      "command=php-fpm",
+      "autostart=true",
+      "autorestart=true",
+      "priority=5",
+      "",
+      "[program:nginx]",
+      "command=nginx -g \"daemon off;\"",
+      "autostart=true",
+      "autorestart=true",
+      "priority=10"
+    ],
+    "description": "Supervisord config for managing PHP-FPM and Nginx processes"
+  },
+  "Doc Laravel Worker": {
+    "prefix": "doc-laravel-worker",
+    "body": [
+      "[program:laravel-worker]",
+      "process_name=%(program_name)s_%(process_num)02d",
+      "command=php /var/www/html/artisan queue:work redis --tries=2",
+      "autostart=true",
+      "autorestart=true",
+      "user=www-data",
+      "numprocs=1",
+      "redirect_stderr=true",
+      "stdout_logfile=/var/www/html/storage/logs/worker.log"
+    ],
+    "description": "Supervisor config for Laravel worker"
+  }
 
 }
